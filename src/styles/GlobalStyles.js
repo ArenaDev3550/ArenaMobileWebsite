@@ -20,7 +20,8 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     font-family: 'Arial', sans-serif;
     transition: all ${({ theme }) => theme.transitions.default};
-    overflow: hidden; /* Previne scroll duplo */
+    overflow-x: hidden; /* Previne scroll horizontal */
+    overflow-y: auto; /* Permite scroll vertical */
   }
 
   button {

@@ -41,3 +41,40 @@ export const containerVariants = {
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -20 },
 };
+
+export const LegalLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid ${({ theme }) => theme.border};
+  text-align: center;
+`;
+
+export const LegalText = styled.p`
+  font-size: 12px;
+  color: ${({ theme }) => theme.textLight};
+  line-height: 1.5;
+  margin: 0;
+`;
+
+export const LegalLinksList = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+`;
+
+export const LegalLink = styled.a`
+  font-size: 12px;
+  color: ${({ theme }) => theme.primary};
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover {
+    color: ${({ theme }) => theme.accent};
+    text-decoration: underline;
+  }
+`;

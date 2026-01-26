@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { SignIn, Spinner } from 'phosphor-react';
@@ -16,7 +16,11 @@ import {
   LoginCard,
   Logo,
   Title,
-  containerVariants
+  containerVariants,
+  LegalLinks,
+  LegalText,
+  LegalLinksList,
+  LegalLink
 } from './LoginPage.styles';
 
 const LoginPage = () => {
@@ -119,6 +123,21 @@ const LoginPage = () => {
             )}
           </Button>
         </form>
+
+        <LegalLinks>
+          <LegalText>
+            Ao usar o ArenaMobile, você concorda com nossos
+          </LegalText>
+          <LegalLinksList>
+            <LegalLink as={Link} to="/termos-de-uso">
+              Termos de Uso
+            </LegalLink>
+            <span style={{ color: '#999' }}>•</span>
+            <LegalLink as={Link} to="/politica-de-privacidade">
+              Política de Privacidade
+            </LegalLink>
+          </LegalLinksList>
+        </LegalLinks>
       </LoginCard>
     </LoginContainer>
   );

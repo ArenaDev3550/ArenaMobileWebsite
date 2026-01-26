@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Gear, User, Calendar, Envelope, Lock, SignOut } from 'phosphor-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Gear, User, Calendar, Envelope, Lock, SignOut, FileText, Shield } from 'phosphor-react';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   PageContainer,
@@ -29,7 +29,10 @@ import {
   ModalTitle,
   ModalActions,
   CancelButton,
-  ConfirmButton
+  ConfirmButton,
+  LegalSection,
+  LegalLinks,
+  LegalLink
 } from './Configuracoes.styles';
 
 function Configuracoes() {
@@ -201,6 +204,21 @@ function Configuracoes() {
             </InfoField>
           </InfoGrid>
         </ConfigSection>
+
+        {/* Seção de Termos e Privacidade */}
+        <LegalSection>
+          <SectionTitle>Termos e Privacidade</SectionTitle>
+          <LegalLinks>
+            <LegalLink as={Link} to="/termos-de-uso">
+              <FileText size={20} />
+              Termos de Uso
+            </LegalLink>
+            <LegalLink as={Link} to="/politica-de-privacidade">
+              <Shield size={20} />
+              Política de Privacidade
+            </LegalLink>
+          </LegalLinks>
+        </LegalSection>
       </ProfileCard>
 
       {/* Modal de Confirmação de Logout */}

@@ -249,3 +249,40 @@ export const ConfirmButton = styled.button`
     background: ${({ theme }) => theme.error}dd;
   }
 `;
+
+export const LegalSection = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  padding-top: ${({ theme }) => theme.spacing.xl};
+  border-top: 1px solid ${({ theme }) => theme.border};
+`;
+
+export const LegalLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+export const LegalLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.md};
+  background: ${({ theme }) => theme.backgroundText};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+
+  &:hover {
+    background: ${({ theme }) => theme.surface};
+    border-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primary};
+    transform: translateX(4px);
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+`;
