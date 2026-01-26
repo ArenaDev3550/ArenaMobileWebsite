@@ -1,0 +1,195 @@
+/* EducaMobile Styles - CSS inline injetado diretamente no HTML */
+
+/* Cópia da div de perfil (inserida após o título) */
+.profile-clone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.educamobile-container .profile-clone {
+  background: #f0f9ff;
+  border: 2px solid #0ea5e9;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.educamobile-container .profile-clone .profile_foto {
+  border-radius: 50%;
+  border: 3px solid #0ea5e9;
+}
+
+.educamobile-container .profile-clone .profile_info {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.educamobile-container .profile-clone .profile_info strong {
+  color: #0c4a6e;
+  font-size: 1.1em;
+}
+
+.menuPrincipal
+{
+  text-align: center;
+  padding: 0px 0px 25px 0px;
+  overflow: hidden;
+}
+
+.menuPrincipal a:link
+{
+  font-size:.80em;
+  font-weight:normal;
+  text-decoration:none;
+}
+
+.edu-tema-param-light {
+    display: none;
+}
+
+h1 {
+    display: none;
+}
+
+table {
+    display: none;
+}
+
+.edu-tema-param a {
+    display: none;
+}
+
+.dfVRrL {
+    display: block;
+}
+
+.eNurlr {
+    display: block;
+}
+
+.profile_foto{
+    /*definimos a largura do box*/
+    width:50px;
+    /* definimos a altura do box */
+    height:50px;
+    /* definimos o quão arredondado irá ficar nosso box */
+    border-radius: 100px;
+    /* Declaração para aparecer no Firefox */
+    -moz-border-radius: 100px;
+    /* Para exibir nos outros navegadores como Chrome, safari, opera*/
+    -webkit-border-radius: 100px;
+    }
+
+.profile_foto_freq{
+    /*definimos a largura do box*/
+    width:40px;
+    /* definimos a altura do box */
+    height:40px;
+    /* definimos o quão arredondado irá ficar nosso box */
+    border-radius: 100px;
+    /* Declaração para aparecer no Firefox */
+    -moz-border-radius: 100px;
+    /* Para exibir nos outros navegadores como Chrome, safari, opera*/
+    -webkit-border-radius: 100px;
+    }
+
+.profile_info img.profile_foto {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 1rem 0 1rem;
+  display: block !important;
+}
+
+.menuPrincipal
+{
+  text-align: center;
+  padding: 0px 0px 25px 0px;
+  overflow: hidden;
+}
+
+.menuPrincipal a:link
+{
+  font-size:.80em;
+  font-weight:normal;
+  text-decoration:none;
+}
+
+.menuPrincipal a:visited
+{
+  font-weight:normal;
+  text-decoration:none;
+}
+
+.menuPrincipal a:active
+{
+  font-weight:normal;
+  text-decoration:none;
+}
+
+.menuPrincipal {
+    background-color: #006D77 !important;
+}
+
+.ui-page-theme-a .ui-content fieldset.ui-grid-b:last-child .menuPrincipal a.ui-link img{
+    background-color: #006D77 !important;
+}
+
+.ui-grid-b {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ui-page-theme-a .ui-content fieldset.ui-grid-b {
+    margin-bottom: 20px;
+}
+.ui-page-theme-a .ui-content fieldset.ui-grid-b .menuPrincipal {
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+}
+.ui-page-theme-a .ui-content fieldset.ui-grid-b .menuPrincipal a.ui-link img  {
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+    padding: 8px;
+    margin-bottom: -5px;
+}
+.ui-page-theme-a .ui-content fieldset.ui-grid-b .menuPrincipal a.ui-link img:hover,
+.ui-page-theme-a .ui-content fieldset.ui-grid-b .menuPrincipal a.ui-link img:active,
+.ui-page-theme-a .ui-content fieldset.ui-grid-b .menuPrincipal a.ui-link img:visited,
+.ui-page-theme-a .ui-content fieldset.ui-grid-b:nth-child(1) .menuPrincipal a.ui-link img:hover,
+.ui-page-theme-a .ui-content fieldset.ui-grid-b:nth-child(1) .menuPrincipal a.ui-link img:active,
+.ui-overlay-a .ui-page-active .ui-panel-open .ui-panel-inner .ui-group-theme-inherit .ui-collapsible-themed-content .ui-collapsible-heading a:hover{
+    text-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .educamobile-container {
+    font-size: 14px;
+  }
+
+  .educamobile-container table {
+    font-size: 12px;
+  }
+
+  .educamobile-container th,
+  .educamobile-container td {
+    padding: 8px;
+  }
+}
+
+/* ===========================================
+   CUSTOMIZAÇÕES ADICIONAIS - EDITE AQUI
+   ===========================================
+
+   Para adicionar novos estilos, simplesmente
+   adicione seu CSS nesta seção abaixo:
+
+   .educamobile-container .meu-elemento {
+     background: red;
+     color: white;
+   }
+
+   =========================================== */

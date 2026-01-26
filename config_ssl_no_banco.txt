@@ -1,0 +1,30 @@
+4. Configurar Segurança
+
+Habilitar SSL (para conexões seguras):
+
+Gere certificados SSL (ex.: usando OpenSSL) e configure em postgresql.conf:
+confssl = on
+ssl_cert_file = '/path/to/server.crt'
+ssl_key_file = '/path/to/server.key'
+
+Atualize pg_hba.conf para exigir SSL:
+confhostssl minha_app    app_user    0.0.0.0/0    md5
+
+5. Restringir Permissões:
+
+Use roles com privilégios mínimos:
+sqlREVOKE ALL ON DATABASE minha_app FROM PUBLIC;
+GRANT CONNECT ON DATABASE minha_app TO app_user;
+GRANT USAGE ON SCHEMA public TO app_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO app_user;
+
+
+
+6. Backups:
+Configure backups regulares com pg_dump:
+bashpg_dump -U postgres minha_app > backup.sql
+
+Firewall (se for servidor remoto):
+
+Use ufw (Ubuntu) para permitir apenas a porta 5432 de IPs confiáveis:
+bashsudo ufw allow from <seu_ip> to any port 5432
