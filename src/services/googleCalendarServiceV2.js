@@ -20,9 +20,25 @@ class GoogleCalendarServiceV2 {
     this.restoreFromCookies();
   }
 
-  // Restaurar autenticação dos cookies
+  // Restaurar autenticação dos cookies OU do login
   restoreFromCookies() {
     try {
+      // PRIORIDADE 1: Verificar se tem token do login com Google (localStorage)
+      const googleAccessToken = localStorage.getItem('google_access_token');
+      const googleUserInfo = localStorage.getItem('google_user_info');
+      
+      if (googleAccessToken) {
+        this.accessToken = googleAccessToken;
+        this.isSignedIn = true;
+        if (googleUserInfo) {
+          this.userInfo = JSON.parse(googleUserInfo);
+        }
+        console.log('✅ Autenticação restaurada do login com Google');
+        console.log('📅 Token do Calendar já está disponível (do login)');
+        return;
+      }
+      
+      // PRIORIDADE 2: Tentar restaurar dos cookies (método antigo)
       const authData = CookieManager.getGoogleAuth();
       const userInfo = CookieManager.getGoogleUserInfo();
       
@@ -33,10 +49,10 @@ class GoogleCalendarServiceV2 {
         console.log('✅ Autenticação restaurada dos cookies');
         console.log(`🕒 Token válido por mais ${CookieManager.getTokenTimeRemaining()} minutos`);
       } else {
-        console.log('ℹ️ Nenhuma autenticação válida encontrada nos cookies');
+        console.log('ℹ️ Nenhuma autenticação válida encontrada');
       }
     } catch (error) {
-      console.error('❌ Erro ao restaurar autenticação dos cookies:', error);
+      console.error('❌ Erro ao restaurar autenticação:', error);
     }
   }
 
@@ -183,13 +199,23 @@ class GoogleCalendarServiceV2 {
     // Verificar se temos token válido
     const hasValidToken = this.isSignedIn && !!this.accessToken;
     
-    // Se não temos token localmente, tentar restaurar dos cookies
+    // Se não temos token localmente, tentar restaurar
     if (!hasValidToken) {
       this.restoreFromCookies();
       return this.isSignedIn && !!this.accessToken;
     }
     
     return hasValidToken;
+  }
+
+  // Verificar se já tem permissões do Calendar (feito no login)
+  hasCalendarPermissions() {
+    const googleAccessToken = localStorage.getItem('google_access_token');
+    if (googleAccessToken) {
+      console.log('✅ Permissões do Calendar já foram concedidas no login');
+      return true;
+    }
+    return false;
   }
 
   // Fazer chamadas para a API do Google Calendar

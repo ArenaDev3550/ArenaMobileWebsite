@@ -78,3 +78,60 @@ export const LegalLink = styled.a`
     text-decoration: underline;
   }
 `;
+
+export const Divider = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+  color: ${({ theme }) => theme.textLight};
+  font-size: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+  }
+
+  span {
+    padding: 0 16px;
+  }
+`;
+
+export const GoogleButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  background: ${({ theme }) => theme.surface};
+  color: ${({ theme }) => theme.text};
+  border: 2px solid ${({ theme }) => theme.border};
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.background};
+    border-color: ${({ theme }) => theme.primary};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  svg {
+    color: #4285F4;
+  }
+`;

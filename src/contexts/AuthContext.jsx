@@ -166,6 +166,40 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const loginWithGoogle = async (googleToken) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const data = await apiService.loginWithGoogle(googleToken);
+
+      // Armazenar o token
+      const token = data.access_token || data.token;
+      secureStorage.setItem('token', token);
+
+      // Buscar dados completos do usuário usando o token
+      const userData = data.user_info;
+      const userAvatar = await apiService.fetchStudentImage(userData.ra);
+
+      // Processar dados do usuário retornados pela API
+      const processedUser = processUserData(userData, userData.username || userData.ra || 'user', userAvatar);
+
+      setUser(processedUser);
+      secureStorage.setItem('user', JSON.stringify(processedUser));
+
+      return processedUser;
+    } catch (err) {
+      console.error('Erro no login com Google:', err);
+      setError(err.message || 'Erro ao fazer login com Google. Tente novamente.');
+      // Limpar dados em caso de erro
+      secureStorage.removeItem('user');
+      secureStorage.removeItem('token');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const checkTokenAndLogin = async () => {
     const token = secureStorage.getItem('token');
     if (!token) return false;
@@ -199,7 +233,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, getToken, checkTokenAndLogin, loading, error }}>
+    <AuthContext.Provider value={{ user, login, loginWithGoogle, logout, getToken, checkTokenAndLogin, loading, error }}>
       <AnimatePresence>
         {loading && <LoadingAnimation />}
       </AnimatePresence>

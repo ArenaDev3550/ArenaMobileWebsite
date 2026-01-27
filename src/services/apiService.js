@@ -57,6 +57,14 @@ class ApiService {
     });
   }
 
+  // Método para login com Google
+  async loginWithGoogle(googleToken) {
+    return this.request('/login/google', {
+      method: 'POST',
+      body: JSON.stringify({ google_token: googleToken }),
+    });
+  }
+
   // Método para verificar se o token é válido e buscar dados do usuário
   async verifyToken() {
     return this.request('/user', {
