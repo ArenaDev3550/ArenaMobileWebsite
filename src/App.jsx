@@ -4,6 +4,7 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/layout/Layout";
+import HomePage from "./pages/HomePage";
 import Home from "./pages/home/Home";
 import LoginPage from "./pages/login/LoginPage";
 import Academico from "./pages/academico/Academico";
@@ -21,6 +22,16 @@ function App() {
       <AuthProvider>
         <GlobalStyles />
         <Routes>
+          {/* Página Inicial Pública */}
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
+          
           {/* Rotas Públicas */}
           <Route
             path="/login"
@@ -40,7 +51,6 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Routes>
-                  <Route path="/" element={<Navigate to="/home" replace />} />
                   <Route path="/home" element={<Home />} />
                   <Route path="/academico" element={<Academico />} />
                   <Route path="/agendamentos" element={<Agendamentos />} />

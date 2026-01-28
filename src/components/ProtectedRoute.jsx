@@ -10,10 +10,10 @@ const ProtectedRoute = ({ children }) => {
     return null;
   }
 
-  // Se não há usuário autenticado, redireciona para o login
+  // Se não há usuário autenticado, redireciona para a página inicial (HomePage)
   // guardando a localização atual para redirect posterior
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   return children;
