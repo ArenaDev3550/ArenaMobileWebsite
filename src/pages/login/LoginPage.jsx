@@ -38,7 +38,7 @@ const LoginPage = () => {
   // Inicializar Google Identity Services
   useEffect(() => {
     console.log('🔄 Carregando Google Identity Services...');
-    console.log('📋 Client ID:', import.meta.env.VITE_GOOGLE_CLIENT_ID);
+    //console.log('📋 Client ID:', import.meta.env.VITE_GOOGLE_CLIENT_ID);
     
     // Verificar se já existe
     if (window.google?.accounts) {
@@ -87,10 +87,10 @@ const LoginPage = () => {
     const checkExistingToken = async () => {
       const tokenExists = localStorage.getItem('token');
       if (tokenExists) {
-        console.log('Token encontrado, verificando validade...');
+        //console.log('Token encontrado, verificando validade...');
         const isValid = await checkTokenAndLogin();
         if (isValid) {
-          console.log('Token válido, redirecionando...');
+          //console.log('Token válido, redirecionando...');
           navigate(from, { replace: true });
         } else {
           console.log('Token inválido, usuário deve fazer login');
@@ -120,14 +120,14 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     console.log('🔵 Botão Google clicado');
-    console.log('📊 Estado atual:', {
+    /*console.log('📊 Estado atual:', {
       googleReady,
       loading,
       hasWindow: !!window.google,
       hasAccounts: !!window.google?.accounts,
       hasOauth2: !!window.google?.accounts?.oauth2,
       clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID
-    });
+    });*/
 
     if (loading) {
       console.log('⏳ Já está carregando, aguarde...');
@@ -144,25 +144,25 @@ const LoginPage = () => {
     if (window.google?.accounts?.oauth2) {
       try {
         console.log('🔧 Inicializando Google Token Client...');
-        console.log('🔑 Client ID:', import.meta.env.VITE_GOOGLE_CLIENT_ID);
-        console.log('📅 Solicitando permissões: Login + Google Calendar');
+        //console.log('🔑 Client ID:', import.meta.env.VITE_GOOGLE_CLIENT_ID);
+        //console.log('📅 Solicitando permissões: Login + Google Calendar');
         
         const tokenClient = window.google.accounts.oauth2.initTokenClient({
           client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
           // Incluir scope do Calendar para já pedir permissão na hora do login
           scope: 'openid email profile https://www.googleapis.com/auth/calendar.events',
           callback: async (tokenResponse) => {
-            console.log('📬 Resposta do Token Client:', tokenResponse);
+            //console.log('📬 Resposta do Token Client:', tokenResponse);
             
             if (tokenResponse.error) {
-              console.error('❌ Erro:', tokenResponse.error);
+              //console.error('❌ Erro:', tokenResponse.error);
               alert('Erro no login: ' + tokenResponse.error);
               return;
             }
             
             if (tokenResponse.access_token) {
               console.log('✅ Access token recebido com permissões do Calendar');
-              console.log('📅 Escopos autorizados:', tokenResponse.scope);
+              //console.log('📅 Escopos autorizados:', tokenResponse.scope);
               // Usar o access_token para autenticar e salvar permissões
               await handleGoogleAccessToken(tokenResponse.access_token);
             }
@@ -173,12 +173,12 @@ const LoginPage = () => {
         tokenClient.requestAccessToken({ prompt: 'consent' });
         
       } catch (error) {
-        console.error('❌ Erro ao inicializar Token Client:', error);
+        //console.error('❌ Erro ao inicializar Token Client:', error);
         alert('Erro ao abrir Google Sign-In: ' + error.message);
       }
     } else {
       console.error('❌ Google OAuth2 não está disponível');
-      console.log('🔍 Debug:', window.google);
+      //console.log('🔍 Debug:', window.google);
       alert('Google Sign-In não está disponível. Verifique sua conexão com a internet.');
     }
   };
@@ -200,9 +200,9 @@ const LoginPage = () => {
       }
       
       const userInfo = await userInfoResponse.json();
-      console.log('✅ Informações do usuário:', userInfo);
+      /*console.log('✅ Informações do usuário:', userInfo);
       console.log('📧 Email:', userInfo.email);
-      console.log('👤 Nome:', userInfo.name);
+      console.log('👤 Nome:', userInfo.name);*/
       console.log('📅 Permissões do Calendar: CONCEDIDAS');
       
       // Salvar o access_token do Google no localStorage para usar no Calendar
@@ -211,7 +211,7 @@ const LoginPage = () => {
       localStorage.setItem('google_user_info', JSON.stringify(userInfo));
       
       // Enviar para o backend para fazer login na aplicação
-      console.log('🔄 Enviando para backend para autenticação...');
+      //console.log('🔄 Enviando para backend para autenticação...');
       
       // Usar a função do AuthContext que já existe
       await loginWithGoogle(accessToken);
