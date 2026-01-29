@@ -1,9 +1,6 @@
 {
   "rewrites": [
-    {
-      "source": "/educamobile/:path*",
-      "destination": "https://educamobile.colegioarena.com.br/educamobile/:path*"
-    }
+    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
